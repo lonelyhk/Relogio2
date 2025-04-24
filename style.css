@@ -1,0 +1,200 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: #00c3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.container {
+  position: relative;
+}
+
+.clock {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 8px solid #000000;
+  position: relative;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.4);
+  background-image: url(Vector-Clock-PNG-Image.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.clock::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #e34d4d;
+  border: 2px solid #e34d4d;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
+.hand {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hand i {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: bottom center;
+  background-color: var(--clr, #fff);
+  height: var(--h);
+  border-radius: 6px 6px 0 0;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.hour-hand i {
+  width: 6px;
+  background: linear-gradient(to right, #141414, #000000, #000000);
+  z-index: 8;
+  height: calc(var(--h, 75px) * 0.52);
+}
+
+.minute-hand i {
+  width: 3px;
+  background: linear-gradient(to right, #000000, #000000, #000000);
+  z-index: 9;
+  height: calc(var(--h, 100px) * 0.70);
+}
+
+.second-hand i {
+  width: 2px;
+  background-color: #e34d4d;
+  z-index: 10;
+  height: calc(var(--h, 110px) * 0.90);
+  border-radius: 3px 3px 0 0;
+}
+
+.second-hand i::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0px;
+  height: 10px;
+  background-color: #e34d4d;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.clock span {
+  position: absolute;
+  transform: rotate(calc(30deg * var(--i)));
+  inset: 12px;
+  text-align: center;
+}
+
+.clock span b {
+  display: inline-block;
+  transform: rotate(calc(-30deg * var(--i)));
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.clock::after {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle at center,
+    #ccc 0%,
+    #ccc 1%,
+    transparent 1%,
+    transparent 1.666%
+  );
+  transform: rotate(-90deg);
+  z-index: -1;
+}
+
+.alarm-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff3d58;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.alarm-button:hover {
+  background-color: #e3344d;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button#save-alarm {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.modal-content button#close-modal {
+  background-color: #f44336;
+  color: white;
+}
+
